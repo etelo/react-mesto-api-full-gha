@@ -12,13 +12,14 @@ const cors = require('./middlewares/cors');
 const app = express();
 app.use(express.json());
 
+app.use(cors);
+
 app.use(requestLogger);
 
 app.post("/signin", validateSignIn, login);
 app.post("/signup", validateSignUp, createUser);
 app.use(auth);
 
-app.use(cors);
 app.use(router);
 
 mongoose
