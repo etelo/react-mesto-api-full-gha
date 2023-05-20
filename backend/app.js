@@ -3,10 +3,11 @@ const mongoose = require("mongoose");
 const { errors } = require("celebrate");
 const router = require("./routes/index");
 const { login, createUser } = require("./controllers/users");
+
 const auth = require("./middlewares/auth");
 const { validateSignUp, validateSignIn } = require("./middlewares/validator");
-
 const { requestLogger, errorLogger } = require("./middlewares/logger");
+const cors = require('./middlewares/cors');
 
 const app = express();
 app.use(express.json());
@@ -17,6 +18,7 @@ app.post("/signin", validateSignIn, login);
 app.post("/signup", validateSignUp, createUser);
 app.use(auth);
 
+app.use(cors);
 app.use(router);
 
 mongoose

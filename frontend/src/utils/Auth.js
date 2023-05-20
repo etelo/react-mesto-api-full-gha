@@ -1,4 +1,4 @@
-const baseURL = "https://auth.nomoreparties.co";
+const baseURL = "https://api.hello2023.nomoredomains.monster";
 
 function handleResponse(response) {
   if (response.ok) {
