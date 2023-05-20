@@ -4,12 +4,12 @@
   
 Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
 
-Адрес репозитория: https://github.com/...
+Адрес репозитория: https://github.com/etelo/react-mesto-api-full-gha
 
 ## Ссылки на проект
 
-IP-адрес x.x.x.x
+IP-адрес 51.250.35.204
 
-Frontend https://...
+Frontend https://hello2023.nomoredomains.monster
 
-Backend https://...
+Backend https://api.hello2023.nomoredomains.monster
