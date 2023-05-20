@@ -1,0 +1,20 @@
+.popup__img-caption {
+  max-width: 358px;
+  color: #000000;
+  font-family: "Inter", "Arial", sans-serif;
+  margin: 32px auto 0;
+  font-style: normal;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 29px;
+}
+
+@media screen and (max-width: 670px) {
+  .popup__img-caption {
+    line-height: 24px;
+    margin: 40px 0 0;
+    max-width: 280px;
+    font-size: 20px;
+  }
+}

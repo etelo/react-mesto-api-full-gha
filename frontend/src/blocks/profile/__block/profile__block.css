@@ -1,0 +1,14 @@
+.profile__block {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+
+@media screen and (max-width: 670px){
+  .profile__block {
+    display: grid;
+    grid-template-areas:
+    ". title button";
+    grid-template-columns: minmax(28px, auto);
+  }
+}

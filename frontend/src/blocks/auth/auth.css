@@ -1,0 +1,8 @@
+.auth {
+  padding: 0;
+  height: 580px;
+  width: 100%;
+  background-color: black;
+  max-width: 360px;
+  margin: 60px auto 120px;
+}
