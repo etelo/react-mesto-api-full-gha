@@ -1,11 +1,11 @@
 require("dotenv").config(); // env-переменные из файла .env добавятся в process.env ; .env вгит игнор добавить
 
 const express = require("express");
+const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const { errors } = require("celebrate");
 const router = require("./routes/index");
 const { login, createUser } = require("./controllers/users");
-const bodyParser = require("body-parser");
 
 const auth = require("./middlewares/auth");
 const { validateSignUp, validateSignIn } = require("./middlewares/validator");
