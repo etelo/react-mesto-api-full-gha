@@ -3,18 +3,11 @@ const mongoose = require("mongoose");
 const { errors } = require("celebrate");
 const router = require("./routes/index");
 const { login, createUser } = require("./controllers/users");
-
 const auth = require("./middlewares/auth");
-const { validateSignUp, validateSignIn } = require("./middlewares/validator");
-const { requestLogger, errorLogger } = require("./middlewares/logger");
-const cors = require('./middlewares/cors');
+const { validateSignUp, validateSignIn } = require('./middlewares/validator');
 
 const app = express();
 app.use(express.json());
-
-app.use(cors);
-
-app.use(requestLogger);
 
 app.post("/signin", validateSignIn, login);
 app.post("/signup", validateSignUp, createUser);
@@ -33,8 +26,6 @@ mongoose
   .catch((error) => {
     console.log("Error connecting to database:", error);
   });
-
-app.use(errorLogger);
 
 app.use(errors());
 app.use((err, req, res, next) => {

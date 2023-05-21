@@ -186,7 +186,7 @@ function App() {
         .then((res) => {
           if (res) {
             setUserData({
-              email: res.data.email,
+              email: res.user.email,
             });
             setIsLoggedIn(true);
             navigate("/");

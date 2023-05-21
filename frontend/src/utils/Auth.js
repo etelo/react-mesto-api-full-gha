@@ -36,8 +36,8 @@ export function getContent(token) {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      // Authorization: `Bearer ${token}`,
+      authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDZhNGFjYmIyN2M0OTRlZWNmZmNlOTkiLCJpYXQiOjE2ODQ2ODc1NzcsImV4cCI6MTY4NTI5MjM3N30.75FOux8fXfZRCtamgpbknirwNkskAwlrYDWTyR7dGeM`,
     },
   }).then(handleResponse);
 }
-//  1
