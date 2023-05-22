@@ -19,6 +19,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(requestLogger);
 
+app.use(cors);
+
+app.use(requestLogger);
+
+app.use(cors);
+
+app.use(requestLogger);
+
 app.post("/signin", validateSignIn, login);
 app.post("/signup", validateSignUp, createUser);
 app.use(auth);
