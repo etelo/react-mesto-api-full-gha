@@ -15,7 +15,7 @@ module.exports.getUserMe = (req, res, next) => {
     .then((user) => {
       if (!user) {
         const error = new NotFoundError(
-          `Пользователь по указанному _id:${userId} не найден.`
+          `Пользователь по указанному _id:${userId} не найден. `
         );
         next(error);
       }
