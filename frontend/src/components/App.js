@@ -12,7 +12,7 @@ import DeletePopup from "./DeletePopup";
 import EditProfilePopup from "./EditProfilePopup";
 import ImagePopup from "./ImagePopup";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
-import api from "../utils/Api";
+import Api from "../utils/Api";
 import Register from "./Register";
 import InfoTooltip from "./InfoTooltip";
 
@@ -38,17 +38,28 @@ function App() {
   const [isDeletePlacePopupOpen, setIsDeletePlacePopupOpen] = useState(false);
 
   const [popupText, setPopupText] = useState("");
+  
+  const navigate = useNavigate();
 
-  const token = localStorage.getItem("token");
+  const api = new Api({
+    baseUrl: "https://api.hello2023.nomoredomains.monster",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+  });
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+
     if (token) {
       setLoading(true);
       auth
         .getContent(token)
         .then((res) => {
           if (res) {
-            api.getToken(token);
+            console.log("useEffect token", token);
+            // api.getToken(token);
             setUserData({
               email: res.user.email,
             });
@@ -63,7 +74,7 @@ function App() {
           setLoading(false);
         });
     }
-  }, [token]);
+  }, [isLoggedIn]);
 
   function handleAddPlaceSubmit(data) {
     setLoading(true);
@@ -116,9 +127,11 @@ function App() {
   }
 
   useEffect(() => {
+    console.log("useEffect isLoggedIn: ", isLoggedIn);
     if (isLoggedIn) {
       Promise.all([api.getUserInfo(), api.getInitialCards()])
         .then(([userInfo, result]) => {
+          console.log("userInfo.user: ", userInfo.user);
           setCurrentUser(userInfo.user);
           setCards(result);
         })
@@ -193,7 +206,6 @@ function App() {
     setCardToDelete({ name: "", link: "" });
   }
 
-  const navigate = useNavigate();
 
   function onLogin(email, password) {
     setLoading(true);

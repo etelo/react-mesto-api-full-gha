@@ -5,9 +5,9 @@ class Api {
   }
 
   
-  getToken(token) {
-    this._headers.authorization = `Bearer ${token}`;
-  }
+  // getToken(token) {
+  //   this._headers.authorization = `Bearer ${token}`;
+  // }
 
   _handleResponse(res) {
     if (res.ok) return res.json();
@@ -19,6 +19,7 @@ class Api {
   }
 
   getUserInfo() {
+    console.log("token B", this._headers.authorization);
     const url = `${this._baseUrl}/users/me`;
     return this._request(url, { headers: this._headers });
   }
@@ -90,11 +91,6 @@ class Api {
   }
 }
 
-const api = new Api({
-  baseUrl: "https://api.hello2023.nomoredomains.monster",
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
 
-export default api;
+
+export default Api;
