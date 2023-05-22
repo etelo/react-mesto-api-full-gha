@@ -23,6 +23,13 @@ class Api {
     return this._request(url, { headers: this._headers });
   }
 
+  getUserDataN() {
+    return fetch(`${this._url}/users/me`, {
+      method: 'GET',
+      headers: this._headers,
+    });
+  }
+
   setUserInfo(data) {
     const url = `${this._baseUrl}/users/me`;
     return this._request(url, {
@@ -85,7 +92,7 @@ class Api {
 
 const api = new Api({
   // baseUrl: "https://api.hello2023.nomoredomains.monster",
-  baseUrl: "http://localhost:3000",
+  baseUrl: "http://localhost:3005",
   headers: {
     // authorization: "3efa0f75-3ec0-4a4a-b91a-ae0ce506bb2e",
     "Content-Type": "application/json",

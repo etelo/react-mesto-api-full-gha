@@ -3,6 +3,18 @@ require("dotenv").config(); // env-переменные из файла .env д�
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+// mongoose.connect('mongodb://127.0.0.1:27017/mestodb');
+mongoose
+  .connect("mongodb://127.0.0.1:27017/mestodb", {
+    useNewUrlParser: true,
+    // useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("Connected to database");
+  })
+  .catch((error) => {
+    console.log("Error connecting to database:", error);
+  });
 const { errors } = require("celebrate");
 const router = require("./routes/index");
 const { login, createUser } = require("./controllers/users");
@@ -25,17 +37,7 @@ app.use(auth);
 
 app.use(router);
 
-mongoose
-  .connect("mongodb://127.0.0.1:27017/mestodb", {
-    useNewUrlParser: true,
-    // useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("Connected to database");
-  })
-  .catch((error) => {
-    console.log("Error connecting to database:", error);
-  });
+
 
 app.use(errorLogger);
 
@@ -48,4 +50,4 @@ app.use((err, req, res, next) => {
   next();
 });
 
-app.listen(3000);
+app.listen(3005);
