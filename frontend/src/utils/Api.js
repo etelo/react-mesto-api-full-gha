@@ -4,7 +4,6 @@ class Api {
     this._headers = headers;
   }
 
-  
   // getToken(token) {
   //   this._headers.authorization = `Bearer ${token}`;
   // }
@@ -26,7 +25,7 @@ class Api {
 
   getUserDataN() {
     return fetch(`${this._url}/users/me`, {
-      method: 'GET',
+      method: "GET",
       headers: this._headers,
     });
   }
@@ -90,7 +89,5 @@ class Api {
     return fetch(url, options).then(this._handleResponse);
   }
 }
-
-
 
 export default Api;
