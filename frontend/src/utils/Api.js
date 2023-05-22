@@ -4,10 +4,6 @@ class Api {
     this._headers = headers;
   }
 
-  // getToken(token) {
-  //   this._headers.authorization = `Bearer ${token}`;
-  // }
-
   _handleResponse(res) {
     if (res.ok) return res.json();
     return Promise.reject(`Error: ${res.status}`);
@@ -18,7 +14,6 @@ class Api {
   }
 
   getUserInfo() {
-    console.log("token B", this._headers.authorization);
     const url = `${this._baseUrl}/users/me`;
     return this._request(url, { headers: this._headers });
   }

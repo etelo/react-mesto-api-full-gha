@@ -58,8 +58,6 @@ function App() {
         .getContent(token)
         .then((res) => {
           if (res) {
-            console.log("useEffect token", token);
-            // api.getToken(token);
             setUserData({
               email: res.user.email,
             });
@@ -113,8 +111,6 @@ function App() {
     api
       .setUserAvatar(data)
       .then((updateAvatar) => {
-        console.log("5 api.getUserInfo(): ");
-        console.log(updateAvatar);
         setCurrentUser(updateAvatar);
         closeAllPopups();
       })
@@ -127,11 +123,9 @@ function App() {
   }
 
   useEffect(() => {
-    console.log("useEffect isLoggedIn: ", isLoggedIn);
     if (isLoggedIn) {
       Promise.all([api.getUserInfo(), api.getInitialCards()])
         .then(([userInfo, result]) => {
-          console.log("userInfo.user: ", userInfo.user);
           setCurrentUser(userInfo.user);
           setCards(result);
         })
