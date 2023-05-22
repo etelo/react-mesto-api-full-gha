@@ -167,9 +167,9 @@ function App() {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    tokenCheck();
-  }, []);
+  // useEffect(() => {
+  //   tokenCheck();
+  // }, []);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -177,14 +177,16 @@ function App() {
     }
   }, [isLoggedIn, navigate]);
 
-  function tokenCheck() {
-    const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
     if (token) {
       setLoading(true);
       auth
         .getContent(token)
         .then((res) => {
           if (res) {
+            api.getToken(token);
             setUserData({
               email: res.user.email,
             });
@@ -199,13 +201,38 @@ function App() {
           setLoading(false);
         });
     }
-  }
+  }, [token]);
+
+  // function tokenCheck() {
+  //   const token = localStorage.getItem("token");
+  //   if (token) {
+  //     setLoading(true);
+  //     auth
+  //       .getContent(token)
+  //       .then((res) => {
+  //         if (res) {
+  //           setUserData({
+  //             email: res.data.email,
+  //           });
+  //           setIsLoggedIn(true);
+  //           navigate("/");
+  //         }
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       })
+  //       .finally(() => {
+  //         setLoading(false);
+  //       });
+  //   }
+  // }
 
   function onLogin(email, password) {
     setLoading(true);
     auth
       .authorize(email, password)
       .then((data) => {
+        // console.log(data.token);
         if (data.token) {
           localStorage.setItem("token", data.token);
           setIsLoggedIn(true);

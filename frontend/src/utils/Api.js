@@ -4,6 +4,11 @@ class Api {
     this._headers = headers;
   }
 
+  
+  getToken(token) {
+    this._headers.authorization = `Bearer ${token}`;
+  }
+
   _handleResponse(res) {
     if (res.ok) return res.json();
     return Promise.reject(`Error: ${res.status}`);
@@ -17,18 +22,6 @@ class Api {
     const url = `${this._baseUrl}/users/me`;
     return this._request(url, { headers: this._headers });
   }
-
-  // editProfile(data) {
-  //   const url = `${this._baseUrl}/users/me`;
-  //   return this._request(url, {
-  //     method: "PATCH",
-  //     headers: this._headers,
-  //     body: JSON.stringify({
-  //       name: data.name,
-  //       about: data.about,
-  //     }),
-  //   });
-  // }
 
   setUserInfo(data) {
     const url = `${this._baseUrl}/users/me`;
@@ -91,9 +84,10 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: "https://api.hello2023.nomoredomains.monster",
+  // baseUrl: "https://api.hello2023.nomoredomains.monster",
+  baseUrl: "http://localhost:3000",
   headers: {
-    authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDZhNGFjYmIyN2M0OTRlZWNmZmNlOTkiLCJpYXQiOjE2ODQ2ODc1NzcsImV4cCI6MTY4NTI5MjM3N30.75FOux8fXfZRCtamgpbknirwNkskAwlrYDWTyR7dGeM`,
+    // authorization: "3efa0f75-3ec0-4a4a-b91a-ae0ce506bb2e",
     "Content-Type": "application/json",
   },
 });

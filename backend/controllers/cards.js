@@ -28,14 +28,15 @@ module.exports.deleteCard = (req, res, next) => {
   Card.findByIdAndDelete(cardId)
     .then((card) => {
       if (!card) {
-        throw new NotFoundError(
-          `Карточка с указанным _id:${cardId} не найдена`
+        next(
+          new NotFoundError(`Карточка с указанным _id:${cardId} не найдена`)
         );
+      } else {
+        if (card.owner.toString() !== req.user._id) {
+          throw new DeleteCardError("Чужая карточка не может быть удалена");
+        }
+        res.send(card);
       }
-      if (card.owner.toString() !== req.user._id) {
-        throw new DeleteCardError("Чужая карточка не может быть удалена");
-      }
-      res.send(card);
     })
     .catch((err) => {
       if (err.name === "CastError") {
