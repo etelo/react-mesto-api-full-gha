@@ -1,12 +1,15 @@
 import imgSuccess from "../images/singUp-success.png";
 import imgFail from "../images/singUp-fail.png";
 
-function InfoTooltip({ isOpen, onClose, isAuthSuccess, message}) {
+function InfoTooltip({ isOpen, onClose, isAuthSuccess, message }) {
   const messageSuccess = "Вы успешно зарегистрировались!";
   const messageError = "Что-то пошло не так! Попробуйте ещё раз.";
 
   return (
-    <div className={`popup popup_type_tooltip ${isOpen && "popup_opened"}`}>
+    <div
+      className={`popup popup_type_tooltip ${isOpen && "popup_opened"}`}
+      onClick={onClose}
+    >
       <div className="popup__container">
         <div className="popup__img-container">
           <button
