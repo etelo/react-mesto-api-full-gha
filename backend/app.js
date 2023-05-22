@@ -1,5 +1,4 @@
-require("dotenv").config(); // env-переменные из файла .env добавятся в process.env ; .env вгит игнор добавить
-
+require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -37,8 +36,6 @@ app.use(auth);
 
 app.use(router);
 
-
-
 app.use(errorLogger);
 
 app.use(errors());
@@ -50,4 +47,4 @@ app.use((err, req, res, next) => {
   next();
 });
 
-app.listen(3005);
+app.listen(3000);

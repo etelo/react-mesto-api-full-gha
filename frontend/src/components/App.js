@@ -29,8 +29,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
-
-  const [deleteCard, setDeleteCard] = useState(false);
+  
   const [cardToDelete, setCardToDelete] = useState({ name: "", link: "" });
 
   const [isAuthSuccess, setIsAuthSuccess] = useState(false);
@@ -103,7 +102,7 @@ function App() {
     api
       .setUserAvatar(data)
       .then((updateAvatar) => {
-        console.log('5 api.getUserInfo(): ');
+        console.log("5 api.getUserInfo(): ");
         console.log(updateAvatar);
         setCurrentUser(updateAvatar);
         closeAllPopups();
@@ -120,7 +119,7 @@ function App() {
     if (isLoggedIn) {
       Promise.all([api.getUserInfo(), api.getInitialCards()])
         .then(([userInfo, result]) => {
-          setCurrentUser(userInfo.user );
+          setCurrentUser(userInfo.user);
           setCards(result);
         })
         .catch((err) => {
@@ -137,7 +136,9 @@ function App() {
     api
       .changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
-        setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
+        setCards((state) =>
+          state.map((c) => (c._id === card._id ? newCard : c))
+        );
       })
       .catch((err) => {
         console.log("Error: ", err);
@@ -193,16 +194,6 @@ function App() {
   }
 
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   tokenCheck();
-  // }, []);
-
-  // useEffect(() => {
-  //   if (isLoggedIn) {
-  //     navigate("/");
-  //   }
-  // }, [isLoggedIn, navigate]);
 
   function onLogin(email, password) {
     setLoading(true);
@@ -260,7 +251,11 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <div className="page__cover">
-          <Header handleLogout={handleSignOut} email={userData.email} onSignOut={handleSignOut} />
+          <Header
+            handleLogout={handleSignOut}
+            email={userData.email}
+            onSignOut={handleSignOut}
+          />
 
           <Routes>
             <Route
@@ -279,12 +274,18 @@ function App() {
                 />
               }
             />
-            <Route path="/sign-in" element={<Login loading={loading} onLogin={onLogin} />} />
+            <Route
+              path="/sign-in"
+              element={<Login loading={loading} onLogin={onLogin} />}
+            />
             <Route
               path="/sign-up"
               element={<Register loading={loading} onRegister={onRegister} />}
             />
-            <Route path="*" element={<Navigate to={isLoggedIn ? "/" : "/sign-in"} />} />
+            <Route
+              path="*"
+              element={<Navigate to={isLoggedIn ? "/" : "/sign-in"} />}
+            />
           </Routes>
 
           <Footer />

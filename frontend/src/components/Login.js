@@ -1,12 +1,10 @@
-import React, { useCallback } from "react";
-import { Navigate } from "react-router";
+import React from "react";
 
 function Login({ loading, onLogin }) {
   const [userdata, setUserdata] = React.useState({
     email: "",
     password: "",
   });
-  const [message, setMessage] = React.useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;

@@ -1,12 +1,11 @@
-import React, { useCallback, useState } from "react";
-import { Navigate, Link } from "react-router-dom";
+import React, { useCallback } from "react";
+import { Link } from "react-router-dom";
 
 function Register({ loading, onRegister }) {
   const [userdata, setUserdata] = React.useState({
     email: "",
     password: "",
   });
-  const [message, setMessage] = useState("");
 
   const handleChange = useCallback(
     (e) => {

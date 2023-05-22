@@ -1,5 +1,4 @@
-// const baseURL = "https://api.hello2023.nomoredomains.monster";
-const baseURL = "http://localhost:3005";
+const baseURL = "https://api.hello2023.nomoredomains.monster";
 
 function handleResponse(response) {
   if (response.ok) {

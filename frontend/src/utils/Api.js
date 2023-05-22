@@ -91,10 +91,8 @@ class Api {
 }
 
 const api = new Api({
-  // baseUrl: "https://api.hello2023.nomoredomains.monster",
-  baseUrl: "http://localhost:3005",
+  baseUrl: "https://api.hello2023.nomoredomains.monster",
   headers: {
-    // authorization: "3efa0f75-3ec0-4a4a-b91a-ae0ce506bb2e",
     "Content-Type": "application/json",
   },
 });
